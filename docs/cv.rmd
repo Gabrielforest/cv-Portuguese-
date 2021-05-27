@@ -1,0 +1,150 @@
+---
+title: "Gabriel F. Pereira's CV"
+author: Gabriel F. Pereira
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    self_contained: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+source("cv_printing_functions.r")
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1LS96eDKE_ddDqB2YQMjkuoG2GUElFBhcqCBUWs3RpJ8/edit?usp=sharing",  
+  pdf_mode = params$pdf_mode
+)
+
+```
+
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
+```
+
+
+Aside
+================================================================================
+
+```{r}
+# Build interactive network of positions colored by section
+# and connected if they occurred in the same year
+datadrivencv::build_network_logo(CV$entries_data)
+```
+
+
+
+## Contato 
+
+- <i class="fa fa-envelope"></i> gabrielfreitaspereira10@gmail.com
+
+- <i class="fa fa-phone"></i> +5515998260810
+
+- <i class="fa fa-github"></i> [GitHub: `@`Gabrielforest](https://github.com/Gabrielforest)
+
+- <i class="fa fa-home"></i> [Portfólio](https://gabrielforest.github.io/portfolio/)
+
+- <i class="fa fa-linkedin"></i> [Linkedin](https://www.linkedin.com/in/gabriel-de-freitas-pereira-925260205)
+
+
+
+```{r}
+if(params$pdf_mode){
+  cat("Visualize este CV online no seguinte link https://gabrielforest.github.io/cv-Portuguese-/")
+} else {
+  cat("[<i class='fas fa-download'></i> Baixe a versão PDF deste CV](https://github.com/gabrielforest/cv-Portuguese-/raw/master/docs/freitas_cv.pdf)")
+}
+```
+
+
+Linguagens {#skills}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_skill_bars()
+```
+
+
+
+Aviso {#disclaimer}
+--------------------------------------------------------------------------------
+
+Feito com o pacote do R [**pagedown**](https://github.com/rstudio/pagedown). 
+
+Veja em [github.com/Gabrielforest/cv-Portuguese-](https://github.com/gabrielforest/cv-Portuguese-).
+
+Data `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Gabriel F. Pereira {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+
+
+Estudo de Dados {data-icon=chart-line}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('data_science_writing_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('data_science_writings')
+```
+
+
+
+Universidade {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('education')
+```
+
+
+
+Atividades e Pesquisa {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('research_positions')
+```
+
+
+
+
+
+
+
+
+
