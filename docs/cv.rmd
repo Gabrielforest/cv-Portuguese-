@@ -71,7 +71,7 @@ datadrivencv::build_network_logo(CV$entries_data)
 if(params$pdf_mode){
   cat("Visualize este CV online no seguinte link https://gabrielforest.github.io/cv-Portuguese-/")
 } else {
-  cat("[<i class='fas fa-download'></i> Baixe a versão PDF deste CV](https://github.com/gabrielforest/cv-Portuguese-/raw/master/docs/freitas_cv.pdf)")
+  cat("[<i class='fas fa-download'></i> Baixe a versão PDF deste CV](https://github.com/Gabrielforest/cv/raw/master/docs/index.pdf)")
 }
 ```
 
