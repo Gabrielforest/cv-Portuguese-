@@ -1,4 +1,4 @@
- ## Gabriel F. Pereira's CV 
+ ## Gabriel F. Pereira - CV 
 
 Este CV foi feito utilizando R, RStudio, e o pacote do R [pagedown](https://github.com/rstudio/pagedown).
 
